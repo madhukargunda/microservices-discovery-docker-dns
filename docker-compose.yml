@@ -1,0 +1,41 @@
+version: '2.3'
+
+services:
+  customer-service:
+    image: madhukargunda/customer-service:1.0
+    container_name: customer-service
+    ports: 
+      - 8080:8080
+    networks: 
+      - microservices-network
+    
+
+  account-service:
+    image: madhukargunda/account-service:1.0
+    ports: 
+      - 8081:8081
+    container_name: acccount-service
+    networks: 
+      - microservices-network
+
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "7001:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - microservices-network    
+
+
+networks: 
+  microservices-network:
+    name: myown-netowork
+  
+
+  
+      
+
+    
+
